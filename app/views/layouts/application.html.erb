@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Ridethebus" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%# include web awesome stuff %>
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/webawesome.css" />
+    <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/webawesome.loader.js"></script>
+
+    <%# include font awesome stuff %>
+    <script src="https://kit.fontawesome.com/dc8a27351f.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <wa-page mobile-breakpoint="600">
+      <header slot="header">
+        I am the header content
+      </header>
+
+      <nav slot="navigation">
+        I am the nav
+      </nav>
+
+      <main>
+        I am main
+        <%= yield %>
+      </main>
+
+      <footer slot="footer">
+        I am the footer
+      </footer>
+    </wa-page>
+  </body>
+</html>
