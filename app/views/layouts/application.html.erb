@@ -23,6 +23,7 @@
 
     <%# include web awesome stuff %>
     <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/webawesome.css" />
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/color/palettes/default.css" />
     <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/webawesome.loader.js"></script>
 
     <%# include font awesome stuff %>
@@ -32,7 +33,7 @@
   <body>
     <wa-page mobile-breakpoint="600">
       <header slot="header">
-        I am the header content
+        <%= render "layouts/header" %>
       </header>
 
       <nav slot="navigation">
