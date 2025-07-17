@@ -49,6 +49,11 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Hotwire spark fpr live reloads
+  group :development do
+   gem "hotwire-spark"
+  end
 end
 
 group :development do
