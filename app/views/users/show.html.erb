@@ -1,7 +1,30 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
-<%= "#{@user.email_address}" %>
+<div class="wa-stack">
+  <div class="wa-flank">
+    <div><b>First Name:</b></div>
+    <div><%= @user.first_name %></div>
+  </div>
+  <div class="wa-flank">
+    <div><b>Last Name:</b></div>
+    <div><%= @user.last_name %></div>
+  </div>
+  <div class="wa-flank">
+    <div><b>Nickame:</b></div>
+    <div><%= @user.nickname %></div>
+  </div>
+  <div class="wa-flank">
+    <div><b>Balance:</b></div>
+    <div><%= @user.balance %></div>
+  </div>
+  <div class="wa-flank">
+    <div><b>Email Address:</b></div>
+    <div><%= @user.email_address %></div>
+  </div>
+  <div> <%= link_to "Edit", edit_user_path if authenticated? %></div>
 
-<%= "#{@user.nickname}" %>
+</div>
+
+
 
