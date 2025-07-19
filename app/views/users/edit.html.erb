@@ -1,0 +1,26 @@
+<h1>Users#edit</h1>
+<p>Find me in app/views/users/edit.html.erb</p>
+
+<%= form_with model: @user, url: user_path, method: :patch do |form| %>
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+  
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+  
+  <div>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname %>
+  </div>
+  
+  <div>
+    <%= form.label :balance %>
+    <%= form.number_field :balance %>
+  </div>
+  
+  <%= form.submit "Update Profile" %>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :user, only: [ :show, :edit, :update ]
   resource :session
   resources :passwords, param: :token
   root "pages#home"
