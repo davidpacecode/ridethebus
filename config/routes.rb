@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :turns
-  resources :games
+  resources :games do
+    resources :turns
+  end
   resource :user, only: [ :show, :edit, :update ]
   resource :session
   resources :passwords, param: :token

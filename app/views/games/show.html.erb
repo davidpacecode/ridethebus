@@ -2,6 +2,22 @@
 
 <%= render @game %>
 
+<!-- Current bet prompt based on turn -->
+<% case @game.current_turn %>
+<% when 1 %>
+  <p>Red or Black?</p>
+<% when 2 %>
+  <p>Higher or Lower than <%# @game.last_card.display %>?</p>
+<!-- etc... -->
+<% end %>
+
+<!-- Form submits to turns#create -->
+<%= form_with model: [@game, Turn.new] do |form| %>
+  <%= form.hidden_field :game_id, value: @game.id %>
+  <!-- Bet options based on current turn -->
+  <%= form.submit "Place Bet" %>
+<% end %>
+
 <div>
   <%= link_to "Edit this game", edit_game_path(@game) %> |
   <%= link_to "Back to games", games_path %>

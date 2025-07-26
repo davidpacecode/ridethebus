@@ -21,14 +21,15 @@ class TurnsController < ApplicationController
 
   # POST /turns or /turns.json
   def create
-    @turn = Turn.new(turn_params)
+    @game = Game.find(params[:game_id])  # Get game from nested route
+    @turn = @game.turns.build(turn_params)  # Associate with game
 
     respond_to do |format|
       if @turn.save
-        format.html { redirect_to @turn, notice: "Turn was successfully created." }
+        format.html { redirect_to @game, notice: "Turn was successfully created." }
         format.json { render :show, status: :created, location: @turn }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to @game, alert: "Error creating turn" }
         format.json { render json: @turn.errors, status: :unprocessable_entity }
       end
     end
@@ -65,6 +66,6 @@ class TurnsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def turn_params
-      params.fetch(:turn, {})
+      params.require(:turn).permit(:game_id, :bet_type, :wager, :result, :card)
     end
 end
