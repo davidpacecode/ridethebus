@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_18_233732) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_26_004033) do
+  create_table "cards", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.string "label"
+    t.integer "value"
+    t.string "suit"
+    t.string "filename"
+    t.boolean "drawn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_cards_on_game_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -18,6 +38,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_233732) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "turns", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "turn_number"
+    t.integer "wager"
+    t.string "bet_type"
+    t.string "result"
+    t.string "card"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_turns_on_game_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,5 +64,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_233732) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "cards", "games"
+  add_foreign_key "games", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "turns", "games"
 end
