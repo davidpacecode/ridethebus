@@ -24,6 +24,10 @@ class TurnsController < ApplicationController
     @game = Game.find(params[:game_id])  # Get game from nested route
     @turn = @game.turns.build(turn_params)  # Associate with game
 
+    @turn.turn_number = @game.current_turn
+    @game.current_turn += 1
+    @game.save
+
     respond_to do |format|
       if @turn.save
         format.html { redirect_to @game, notice: "Turn was successfully created." }
