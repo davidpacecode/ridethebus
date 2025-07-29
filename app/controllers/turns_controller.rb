@@ -1,6 +1,10 @@
 class TurnsController < ApplicationController
   before_action :set_turn, only: %i[ show edit update destroy ]
 
+  CARD_NAMES = [ nil, nil, "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" ]
+  SUIT_NAMES = [ "spade", "heart", "diamond", "club" ]
+
+
   # GET /turns or /turns.json
   def index
     @turns = Turn.all
@@ -26,7 +30,14 @@ class TurnsController < ApplicationController
 
     @turn.turn_number = @game.current_turn
     @game.current_turn += 1
-    @game.save
+
+
+    card_value = rand(2..14)
+    card_suit = rand(0..3)  # or rand(4)
+
+    @turn.card = "#{CARD_NAMES[card_value]} #{SUIT_NAMES[card_suit]}"
+
+    @game.save # I should check for errors here
 
     respond_to do |format|
       if @turn.save

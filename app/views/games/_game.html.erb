@@ -6,4 +6,10 @@
   <%= "Turn: #{game.current_turn}" %>
   <%= tag.br %>
   <%= "Status: #{game.status}" %>
+  <%= tag.br %>
+  <% if @turn %>
+    <%= "Card: #{@turn.card}" %>
+  <% else %>
+    <%= "No cards yet" %>
+  <% end %>
 </div>

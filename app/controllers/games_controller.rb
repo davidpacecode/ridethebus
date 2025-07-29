@@ -8,6 +8,7 @@ class GamesController < ApplicationController
 
   # GET /games/1 or /games/1.json
   def show
+    @turn = @game.turns.last
   end
 
   # GET /games/new
