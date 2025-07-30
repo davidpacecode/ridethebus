@@ -1,8 +1,8 @@
 class TurnsController < ApplicationController
   before_action :set_turn, only: %i[ show edit update destroy ]
 
-  CARD_NAMES = [ nil, nil, "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" ]
-  SUIT_NAMES = [ "spade", "heart", "diamond", "club" ]
+  CARD_NAMES = [ nil, nil, "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace" ]
+  SUIT_NAMES = [ "spades", "hearts", "diamonds", "clubs" ]
 
 
   # GET /turns or /turns.json

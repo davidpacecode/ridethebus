@@ -9,6 +9,12 @@ class GamesController < ApplicationController
   # GET /games/1 or /games/1.json
   def show
     @turn = @game.turns.last
+    if @turn
+      @card = @turn.card.split
+      @card_value = @card[0]
+      @card_suit = @card[1]
+      @card_image = "#{@card_suit}_#{@card_value}.png"
+    end
   end
 
   # GET /games/new

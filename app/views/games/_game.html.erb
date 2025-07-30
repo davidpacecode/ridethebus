@@ -9,6 +9,7 @@
   <%= tag.br %>
   <% if @turn %>
     <%= "Card: #{@turn.card}" %>
+    <%= render "card", value: @card_value, suit: @card_suit  %>
   <% else %>
     <%= "No cards yet" %>
   <% end %>
