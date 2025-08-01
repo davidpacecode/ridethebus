@@ -2,21 +2,43 @@
 
 <%= render @game %>
 
-<!-- Current bet prompt based on turn -->
-<% case @game.current_turn %>
-<% when 1 %>
-  <p>Red or Black?</p>
-<% when 2 %>
-  <p>Higher or Lower than <%# @game.last_card.display %>?</p>
-<!-- etc... -->
-<% end %>
+<br />
 
 <!-- Form submits to turns#create -->
 <%= form_with model: [@game, Turn.new] do |form| %>
   <%= form.hidden_field :game_id, value: @game.id %>
   <!-- Bet options based on current turn -->
+  <% case @game.current_turn %>
+  <% when 1 %>
+    <wa-radio-group label="Red or Black?" name="red_or_black" required>
+      <wa-radio value="red">Red</wa-radio>
+      <wa-radio value="black">Black</wa-radio>
+    </wa-radio-group>
+  <% when 2 %>
+    <wa-radio-group label="Higher or Lower?" name="higher_or_lower" required>
+      <wa-radio value="higher">Higher</wa-radio>
+      <wa-radio value="lower">Lower</wa-radio>
+    </wa-radio-group>
+  <% when 3 %>
+    <wa-radio-group label="Inside or Outside?" name="inside_or_outside" required>
+      <wa-radio value="inside">Inside</wa-radio>
+      <wa-radio value="outside">Outside</wa-radio>
+    </wa-radio-group>
+  <% when 4 %>
+    <wa-radio-group label="Suit of the next card?" name="which_suit" required>
+      <wa-radio value="hearts">Hearts</wa-radio>
+      <wa-radio value="diamonds">Diamonds</wa-radio>
+      <wa-radio value="clubs">Clubs</wa-radio>
+      <wa-radio value="spades">Spades</wa-radio>
+    </wa-radio-group>
+  <% end %>
+  <br />
+  <wa-input label="Wager" name="wager" required type="number" placeholder="Wager"></wa-input>
+  <br />
   <%= form.submit "Place Bet" %>
 <% end %>
+
+<br />
 
 <div>
   <%= link_to "Edit this game", edit_game_path(@game) %> |
