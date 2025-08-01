@@ -25,13 +25,13 @@
     <div><center><%= image_tag "red.svg", size: "50" %></center></div>
   </div>
   <div class="wa-span-grid wa-heading-xl">
-    <div><center>RIDE THE BUS</center></div>
+    <div><center>Stylized Ride the Bus rendering goes here....</center></div>
   </div>
-  <div class="wa-grid wa-gap-0" style="--min-column-size: 200px;">
-    <div class="wa-body-l"><center>Round 1 <%= tag.br %> Red or Black <%= tag.br %> 2x</center></div>
-    <div class="wa-body-l"><center>Round 2 <%= tag.br %> Higher or Lower <%= tag.br %> 3x</center></div>
-    <div class="wa-body-l"><center>Round 3 <%= tag.br %> Inside or Outside <%= tag.br %> 4x</center></div>
-    <div class="wa-body-l"><center>Round 4 <%= tag.br %> Suit <%= tag.br %> 20x</center></div>
+  <div class="wa-grid wa-gap-0 wa-body-l" style="--min-column-size: 200px;">
+    <div class="wa-body-l" style="font-weight: bold;"><center>Round 1 <%= tag.br %> Red or Black <%= tag.br %> 2x</center></div>
+    <div class="wa-body-l" style="font-weight: bold;"><center>Round 2 <%= tag.br %> Higher or Lower <%= tag.br %> 3x</center></div>
+    <div class="wa-body-l" style="font-weight: bold;"><center>Round 3 <%= tag.br %> Inside or Outside <%= tag.br %> 4x</center></div>
+    <div class="wa-body-l" style="font-weight: bold;"><center>Round 4 <%= tag.br %> Suit <%= tag.br %> 20x</center></div>
   </div>
   <div class="wa-grid wa-gap-0" style="--min-column-size: 200px;">
     <div><center><%= render "card", value: @card_value, suit: @card_suit %></center></div>
@@ -40,13 +40,7 @@
     <div><center><%# image_tag "clubs_8.svg", size: "50" %></center></div>
   </div>
   <div class="wa-grid wa-gap-0" style="--min-column-size: 50px;">
-    <div><center>Player 1 <%= tag.br %>Bet: $10</center></div>
-    <div><center>Player 2 <%= tag.br %>Bet: $10</center></div>
-    <div><center>Player 3 <%= tag.br %>Bet: $10</center></div>
-    <div><center>Player 4 <%= tag.br %>Bet: $10</center></div>
-    <div><center>Player 5 <%= tag.br %>Bet: $10</center></div>
-    <div><center>Player 6 <%= tag.br %>Bet: $10</center></div>
-    <div><center>Player 7 <%= tag.br %>Bet: $10</center></div>
+    <div><center><%= @game.user_id %><br /> Bet: $10</center></div>
   </div>
 </div>
 </div>
