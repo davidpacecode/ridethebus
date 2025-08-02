@@ -1,5 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
+<b>Balance: <%= number_to_currency(@balance, precision: 0) %>
+<b>Cards so far: <%= "{#@cards_so_far}" %>
+<% if @turn %>
+  <% if @turn.result == "win" %>
+    <h1>You win!!</h1>
+  <% else %>
+    <h1>You loser!</h1>
+  <% end %>
+<% end %>
+
+<b>Cards so far: <%= "{#@cards_so_far}" %>
+
 <%= render @game %>
 
 <br />
@@ -7,6 +19,7 @@
 <!-- Form submits to turns#create -->
 <%= form_with model: [@game, Turn.new] do |form| %>
   <%= form.hidden_field :game_id, value: @game.id %>
+
   <!-- Bet options based on current turn -->
   <% case @game.current_turn %>
   <% when 1 %>

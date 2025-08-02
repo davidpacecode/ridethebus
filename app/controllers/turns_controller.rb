@@ -31,11 +31,43 @@ class TurnsController < ApplicationController
     @turn.turn_number = @game.current_turn
     @game.current_turn += 1
 
+    @turn.bet_type = params[:red_or_black]
+    @turn.wager = params[:wager]
 
-    card_value = rand(2..14)
-    card_suit = rand(0..3)  # or rand(4)
+    # draw a card, and ensure it's unique
+    @cards_so_far = @game.turns.pluck(:card)
+    unique_card = false
 
+    until unique_card
+      card_value = rand(2..14)
+      card_suit = rand(0..3)  # or rand(4)
+      card = "#{CARD_NAMES[card_value]} #{SUIT_NAMES[card_suit]}"
+      unique_card = @cards_so_far.exclude? card
+    end
     @turn.card = "#{CARD_NAMES[card_value]} #{SUIT_NAMES[card_suit]}"
+
+    case @turn.turn_number
+    when 1
+      is_red_card = SUIT_NAMES[card_suit].in?([ "hearts", "diamonds" ])
+      player_guessed_red = params[:red_or_black] == "red"
+
+      if (is_red_card && player_guessed_red) || (!is_red_card && !player_guessed_red)
+        Rails.logger.info "You win!"
+        @turn.result = "win"
+      else
+        Rails.logger.info "You lose!"
+        @turn.result = "loss"
+      end
+
+    when 2
+
+    when 3
+
+    when 4
+
+    else
+        Rails.logger.info "For some reason we're not in turn 1, 2, 3, or 4..."
+    end
 
     @game.save # I should check for errors here
 

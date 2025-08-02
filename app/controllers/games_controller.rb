@@ -9,6 +9,7 @@ class GamesController < ApplicationController
   # GET /games/1 or /games/1.json
   def show
     @turn = @game.turns.last
+    @balance = Current.user.balance
     if @turn
       @card = @turn.card.split
       @card_value = @card[0]
