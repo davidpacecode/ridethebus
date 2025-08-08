@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_26_205730) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_08_021900) do
   create_table "cards", force: :cascade do |t|
     t.integer "game_id", null: false
     t.string "label"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_205730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "current_turn"
+    t.integer "wager"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
@@ -44,7 +45,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_205730) do
   create_table "turns", force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "turn_number"
-    t.integer "wager"
     t.string "bet_type"
     t.string "result"
     t.string "card"

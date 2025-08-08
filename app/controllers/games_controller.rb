@@ -34,6 +34,7 @@ class GamesController < ApplicationController
     @game.user_id = Current.user.id
     @game.status = "in_progress"
     @game.current_turn = 1
+    @game.wager = 9
 
     respond_to do |format|
       if @game.save

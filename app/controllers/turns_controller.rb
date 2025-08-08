@@ -32,7 +32,18 @@ class TurnsController < ApplicationController
     @game.current_turn += 1
 
     @turn.bet_type = params[:red_or_black]
-    @turn.wager = params[:wager]
+
+    @game.wager = params[:wager]
+
+    if @game.save
+      # yippee
+    else
+      respond_to do |format|
+        format.html { redirect_to @game, alert: @game.errors.full_messages.first }
+        format.json { render json: @game.errors, status: unprocessable_entity }
+      end
+      return
+    end
 
     # draw a card, and ensure it's unique
     @cards_so_far = @game.turns.pluck(:card)
@@ -69,7 +80,6 @@ class TurnsController < ApplicationController
         Rails.logger.info "For some reason we're not in turn 1, 2, 3, or 4..."
     end
 
-    @game.save # I should check for errors here
 
     respond_to do |format|
       if @turn.save
